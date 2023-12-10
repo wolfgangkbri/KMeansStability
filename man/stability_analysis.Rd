@@ -31,10 +31,12 @@ a data generating process with no clusters. Defaulted to 'False', as this is ver
 \item{nreps_null}{Integer for number of null samples taken in `null_dist` is set to True. Defaulted to 30 but more are recommended.}
 }
 \value{
-An object of class `Kmeans_stability_analysis` which contains the mean stability metrics computed over `df`,
-and a list of the observed stabiltiy metrics across each resample.
-If `null_dist` is set to true, the mean stability for the null samples, the associated gao statistics, and the raw stability metrics for each null sample will also be returned.
-Otherwise, those components of the `Kmeans_stability_analysis` object will be set to `NA`.
+An object of class `Kmeans_stability_analysis` which contains the following:
+(1) `mean_stabilities`, a Kmax x 5 matrix containing the mean stability metrics computed over `df`,
+(2) `obs_stability_array`, a list of length `nrep` containing the stability metrics computed for each resample,
+(3), `mean_stabilities_null`, a Kmax x 5 matrix containing the mean stability metrics computed over a set of null samples if `null_dist = T`,`NA` otherwise,
+(4) `null_stabilities_list`, a list of length `nrep_null` containing the stability metrics for each null sample if `null_dist = T`, `NA` otherwise
+(5) `mean_stabilities_gap `, a Kmax x 5 matrix of the differences in mean null stabilities against the observed stabilities if `null_dist = T`, `NA` otherwise.
 }
 \description{
 `stability_analysis` computes a set of stability metrics to estimate the most stable Kmeans clustering

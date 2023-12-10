@@ -5,7 +5,6 @@
 #'@param df A data matrix
 #'@param K_folds Integer for number of folds used in cross-validation. Defaulted to four.
 #'@param Kmax Maximum number of clusters considered. Defaulted to 6.
-#' @export
 resample_cv <- function(df, K_folds = 4, Kmax = 6){
   n <- nrow(df)
   folds <- (sample(1:n)) %% (K_folds) + 1
@@ -32,7 +31,6 @@ resample_cv <- function(df, K_folds = 4, Kmax = 6){
 #'@param df A data matrix
 #'@param B Integer for number of bootstrap sampled. Defaulted to 25.
 #'@param Kmax Maximum number of clusters considered. Defaulted to 6.
-#'@export
 resample_boot <- function(df, B = 25, Kmax = 6){
   n <- nrow(df)
   dist_array <- array(dim = c(Kmax - 1, 5, B))
@@ -64,7 +62,6 @@ resample_boot <- function(df, B = 25, Kmax = 6){
 #' @param Kmax Integer for maximum number of clusters considered
 #' @param Kfolds Number of folds used in cross-validation
 #' @param nreps number of null samples taken
-#' @export
 null_resample_cv <- function(df, Kmax, Kfolds, nreps = 20){
   xs <- scale(df, center = TRUE, scale = FALSE)
   n <- nrow(df)
@@ -102,7 +99,6 @@ null_resample_cv <- function(df, Kmax, Kfolds, nreps = 20){
 #'  @param nreps Number of samples taken from the null distribution
 #'  @param Kmax Maximum number of clusters considered.
 #'  @param nerps number of null samples taken
-#'  @export
 null_resample_bootstrap <- function(df, Kmax, nreps = 20){
   xs <- scale(df, center = TRUE, scale = FALSE)
   n <- nrow(df)
@@ -156,10 +152,12 @@ null_resample_bootstrap <- function(df, Kmax, nreps = 20){
 #' Following the Gap Statistic, these valuesoperate as baseline values for the metrics under the setting of no clustering.
 #' One may select the clustering which attains the largest difference in observed stability metric and the expected null metric to be the most stable clustering.
 #'
-#'@return An object of class `Kmeans_stability_analysis` which contains the mean stability metrics computed over `df`,
-#' and a list of the observed stabiltiy metrics across each resample.
-#' If `null_dist` is set to true, the mean stability for the null samples, the associated gao statistics, and the raw stability metrics for each null sample will also be returned.
-#' Otherwise, those components of the `Kmeans_stability_analysis` object will be set to `NA`.
+#'@return An object of class `Kmeans_stability_analysis` which contains the following:
+#' (1) `mean_stabilities`, a Kmax x 5 matrix containing the mean stability metrics computed over `df`,
+#' (2) `obs_stability_array`, a list of length `nrep` containing the stability metrics computed for each resample,
+#' (3), `mean_stabilities_null`, a Kmax x 5 matrix containing the mean stability metrics computed over a set of null samples if `null_dist = T`,`NA` otherwise,
+#' (4) `null_stabilities_list`, a list of length `nrep_null` containing the stability metrics for each null sample if `null_dist = T`, `NA` otherwise
+#' (5) `mean_stabilities_gap `, a Kmax x 5 matrix of the differences in mean null stabilities against the observed stabilities if `null_dist = T`, `NA` otherwise.
 #' @export
 stability_analysis <- function(df, Kmax = 6, method = "CV", nreps = 4, null_dist = F, nreps_null = 30){
 

@@ -17,5 +17,4 @@ sample and out-of-bag sample matching the computations done in `resample_boot`.
  @param nreps Number of samples taken from the null distribution
  @param Kmax Maximum number of clusters considered.
  @param nerps number of null samples taken
- @export
 }
