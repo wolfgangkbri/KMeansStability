@@ -8,13 +8,13 @@
 
 The goal of KMeansStability is to implement the functions necessary to
 conduct a small simulation study comparing the efficacy of a set of
-stability-based methods for specifying $K$ for $K$-mean clustering. In
+stability-based methods for specifying for $K$-means clustering. In
 brief, stability-based specification methods are based on the principle
-that a correct specification of $K$ should induce the most reproducible
+that a correct specification of should induce the most reproducible
 clusters: if one were to repeatedly sample from the population, the
-clusterings tuned to the correct value of $K$ would be more similar
-compared to clusterings with inappropriate values of $K$. To leverage
-this intuition into a method, one emulates repeated samplings through
+clusterings tuned to the correct value of would be more similar compared
+to clusterings with inappropriate values of $K$. To leverage this
+intuition into a method, one emulates repeated samplings through
 resampling from a given dataset and defines a distance metric over the
 resampled clusterings. The value of $K$ which yields the smallest
 average distance between the clusters is deemed the most stable tuning
@@ -28,25 +28,40 @@ resampling.
 
 ## Installation
 
-You can install the development version of KMeansStability from
-[GitHub](https://github.com/) with:
+You can install the development version of KMeansStability from GitHub
+with:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("wolfgangkbri/KMeansStability")
+#> Downloading GitHub repo wolfgangkbri/KMeansStability@HEAD
+#> 
+#> ── R CMD build ─────────────────────────────────────────────────────────────────
+#> * checking for file ‘/private/var/folders/0x/clg_bd7156z9wp_60zk8tdkr0000gn/T/RtmpzqGMII/remotes9d2e5ed99db8/wolfgangkbri-KMeansStability-9e58d05/DESCRIPTION’ ... OK
+#> * preparing ‘KMeansStability’:
+#> * checking DESCRIPTION meta-information ... OK
+#> * checking for LF line-endings in source and make files and shell scripts
+#> * checking for empty or unneeded directories
+#> Omitted ‘LazyData’ from DESCRIPTION
+#> * building ‘KMeansStability_0.1.0.tar.gz’
+#> Installing package into '/private/var/folders/0x/clg_bd7156z9wp_60zk8tdkr0000gn/T/RtmpwjVOEF/temp_libpath9a99b936719'
+#> (as 'lib' is unspecified)
 ```
 
 ## Example
 
-The main function in `KMeansStability` is `stability_analysis`. This
+The main function in KMeansStability is stability_analysis. This
 function evaluates a set of five different stability metrics across a
-range of Kmeans clusterings.
+range of $K$-means clusterings.
 
 ``` r
 library(KMeansStability)
 ## basic example code
 set.seed(3)
-df <- toy_datagen()
+
+# samples from a mixture distribution with three clusters
+df <- toy_datagen() 
+
 results <- stability_analysis(df, Kmax = 6, method = "CV", nreps = 4)
 results$mean_stabilities
 #>    stab_metric

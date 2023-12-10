@@ -9,7 +9,7 @@ Description: This package is designed for a small simulation study
     in K-means clustering. This package implements the cannon metrics, Minimum 
     Matching Distance and Co-membership distance, along with three novel metrics 
     based on the Wasserstein distance of various components of the clusterings. 
-License: What license is it under?
+License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
 Imports:
