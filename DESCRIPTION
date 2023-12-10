@@ -1,0 +1,18 @@
+Package: KMeansStability
+Type: Package
+Title: Stability Analysis of K-Means Clustering
+Version: 0.1.0
+Author: Wolfgang Brightenburg
+Maintainer: Wolfgang Brightenburg <wolfgangkbri@tamu.edu>
+Description: This package is designed for a small simulation study
+    comparing the efficacy of a slew of stability metric methods for selecting K
+    in K-means clustering. This package implements the cannon metrics, Minimum 
+    Matching Distance and Co-membership distance, along with three novel metrics 
+    based on the Wasserstein distance of various components of the clusterings. 
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+Imports:
+  transport,
+  RcppHungarian
+RoxygenNote: 7.2.3
