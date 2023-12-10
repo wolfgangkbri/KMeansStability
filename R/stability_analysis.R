@@ -195,7 +195,7 @@ stability_analysis <- function(df, Kmax = 6, method = "CV", nreps = 4, null_dist
     mean_stabilities_null <- gap <- nsl <- NA
   }
 
-  out <- list(mean_stabilities,
+  out <- list(mean_stabilities = mean_stabilities,
               obs_stability_array = dist_array,
               mean_stabilities_null = mean_stabilities_null,
               null_stabilities_list = nsl,
