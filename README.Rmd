@@ -18,7 +18,9 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of KMeansStability is to 
+The goal of KMeansStability is to implement the functions necessary to conduct a small simulation study comparing the efficacy of a set of stability-based methods for specifying $K$ for $K$-mean clustering. In brief, stability-based specification methods are based on the principle that a correct specification of $K$ should induce the most reproducible clusters: if one were to repeatedly sample from the population, the clusterings tuned to the correct value of $K$ would be more similar compared to clusterings with inappropriate values of $K$. To leverage this intuition into a method, one emulates repeated samplings through resampling from a given dataset and defines a  distance metric over the resampled clusterings. The value of $K$ which yields the smallest average distance between the clusters is deemed the most stable tuning of $K$. The choice of distance metric is essential to defining the most stable value of $K$. KMeansStability implements two common stability metrics, Minimum Matching Distance and Comembership Distance, along with three novel distances based on the Wasserstein distance between different components of the clusterings, within a resampling framework which accomodates either cross-validation or the bootstrap for resampling.
+
+
 
 ## Installation
 
@@ -31,7 +33,7 @@ devtools::install_github("wolfgangkbri/KMeansStability")
 
 ## Example
 
-The main function in `KMeansStability` is `stability_analysis`. This function evaluates a set of five stability metrics across a range of Kmeans clusterings. Smaller values for these stability metrics indicate a more stable clustering. One can use stability as a means of specifing $K$. 
+The main function in `KMeansStability` is `stability_analysis`. This function evaluates a set of five different stability metrics across a range of Kmeans clusterings. 
 
 ```{r example}
 library(KMeansStability)
@@ -42,20 +44,5 @@ results <- stability_analysis(df, Kmax = 6, method = "CV", nreps = 4)
 results$mean_stabilities
 ```
 
-In this setting, we have that all five of the stability metrics agree that setting K=3 induces the most stable clustering. 
+With this dataset, we have that all five of the stability metrics agree that setting $K=3$ induces the most stable clustering, correctly identifying the number of components of the mixture model forming the dataset.
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
-
-```{r cars}
-summary(cars)
-```
-
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this.
-
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
-
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN.
