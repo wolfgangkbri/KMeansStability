@@ -34,25 +34,24 @@ with:
 ``` r
 # install.packages("devtools")
 devtools::install_github("wolfgangkbri/KMeansStability")
-#> Downloading GitHub repo wolfgangkbri/KMeansStability@HEAD
 #> 
 #> ── R CMD build ─────────────────────────────────────────────────────────────────
-#> * checking for file ‘/private/var/folders/0x/clg_bd7156z9wp_60zk8tdkr0000gn/T/RtmpzqGMII/remotes9d2e5ed99db8/wolfgangkbri-KMeansStability-9e58d05/DESCRIPTION’ ... OK
+#> * checking for file ‘/private/var/folders/0x/clg_bd7156z9wp_60zk8tdkr0000gn/T/Rtmp7spFEi/remotesa714246f0767/wolfgangkbri-KMeansStability-da6cfc5/DESCRIPTION’ ... OK
 #> * preparing ‘KMeansStability’:
 #> * checking DESCRIPTION meta-information ... OK
 #> * checking for LF line-endings in source and make files and shell scripts
 #> * checking for empty or unneeded directories
 #> Omitted ‘LazyData’ from DESCRIPTION
 #> * building ‘KMeansStability_0.1.0.tar.gz’
-#> Installing package into '/private/var/folders/0x/clg_bd7156z9wp_60zk8tdkr0000gn/T/RtmpwjVOEF/temp_libpath9a99b936719'
-#> (as 'lib' is unspecified)
 ```
 
 ## Example
 
-The main function in KMeansStability is stability_analysis. This
+The main function in KMeansStability is `stability_analysis`. This
 function evaluates a set of five different stability metrics across a
-range of $K$-means clusterings.
+range of $K$-means clusterings. Below is an example of
+`stability_analysis` evaluated on two-dimensional dataset generated from
+well-seperated three component Gaussian mixture.
 
 ``` r
 library(KMeansStability)
@@ -73,7 +72,6 @@ results$mean_stabilities
 #>   6 5.030682 0.6964552 0.7962646 0.160 0.0676
 ```
 
-With this dataset, we have that all five of the stability metrics agree
-that setting $K=3$ induces the most stable clustering, correctly
-identifying the number of components of the mixture model forming the
-dataset.
+We have that all five of the stability metrics agree that setting $K=3$
+induces the most stable clustering, as each metric attains its mimum
+value at $K=3$.

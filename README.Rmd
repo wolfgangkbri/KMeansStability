@@ -23,14 +23,14 @@ The goal of KMeansStability is to implement the functions necessary to conduct a
 ## Installation
 You can install the development version of KMeansStability from GitHub with:
 
-```{r}
+```{r message=F}
 # install.packages("devtools")
 devtools::install_github("wolfgangkbri/KMeansStability")
 ```
 
 
 ## Example
-The main function in KMeansStability is stability_analysis. This function evaluates a set of five different stability metrics across a range of $K$-means clusterings.
+The main function in KMeansStability is `stability_analysis`. This function evaluates a set of five different stability metrics across a range of $K$-means clusterings. Below is an example of `stability_analysis` evaluated on two-dimensional dataset generated from well-seperated three component Gaussian mixture.
 
 ```{r}
 library(KMeansStability)
@@ -44,4 +44,4 @@ results <- stability_analysis(df, Kmax = 6, method = "CV", nreps = 4)
 results$mean_stabilities
 ```
 
-With this dataset, we have that all five of the stability metrics agree that setting $K=3$ induces the most stable clustering, correctly identifying the number of components of the mixture model forming the dataset.
+We have that all five of the stability metrics agree that setting $K=3$ induces the most stable clustering, as each metric attains its mimum value at $K=3$. 
